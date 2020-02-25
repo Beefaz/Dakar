@@ -103,6 +103,9 @@ public class Controller {
         } else if (!Validation.isValidPassword(loginPass)) {
             logErrorField.setText("Invalid password. Minimum 5 Uppercase, lowercase or numeric characters.");
             logErrorField.setVisible(true);
+        } else if (!VartotojasDAO.selectUsernamePass(userName).toString().contains(loginPass)) {
+            logErrorField.setText("Wrong password");
+            logErrorField.setVisible(true);
         } else {
             loadDashboard();
         }

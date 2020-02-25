@@ -32,7 +32,7 @@
                 <TextField fx:id="regEmailField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <PasswordField fx:id="regPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <PasswordField fx:id="regPasswordField1" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <Label fx:id="regErrorField" textFill="RED" visible="false" wrapText="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
+                <Label fx:id="regErrorField" textFill="RED" visible="false" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
                 <Button fx:id="regRegisterButton" mnemonicParsing="false" onMouseReleased="#registrationErrorCheck" prefHeight="25.0" prefWidth="84.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                 <Label prefHeight="17.0" prefWidth="121.0" text="E-mail" GridPane.rowIndex="3" />
                 <Label prefHeight="17.0" prefWidth="125.0" text="Username" GridPane.rowIndex="2" />

@@ -32,7 +32,7 @@
                 </Label>
                 <Label prefHeight="17.0" prefWidth="125.0" text="Username" GridPane.rowIndex="1" />
                 <Label prefHeight="17.0" prefWidth="121.0" text="Password" GridPane.rowIndex="2" />
-                <Label fx:id="logErrorField" textFill="RED" visible="false" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                <Label fx:id="logErrorField" textFill="RED" visible="false" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                 <TextField fx:id="logUsernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <PasswordField fx:id="logPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Button fx:id="logLoginButton" mnemonicParsing="false" onMouseReleased="#loginErrorCheck" prefHeight="25.0" prefWidth="84.0" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="4" />

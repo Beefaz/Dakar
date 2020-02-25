@@ -47,4 +47,25 @@ public class VartotojasDAO {
         }
         return vartotojuVardai;
     }
+
+    public static ArrayList selectUsernamePass(String userName) {
+        String query = "SELECT userName, userPassword FROM vartotojas WHERE username LIKE '" + userName + "'";
+        String url = "jdbc:mysql://localhost:3306/dakaras?serverTimezone=UTC";
+        ArrayList<Vartotojas> userInfo = new ArrayList<>();
+        try {
+            Connection prisijungimas = DriverManager.getConnection(url, "root", "");
+            PreparedStatement uzklausa = prisijungimas.prepareStatement(query);
+            ResultSet rezultatas = uzklausa.executeQuery(query);
+
+            while (rezultatas.next()) {
+                String usernameList = rezultatas.getString("userName");
+                userInfo.add(new Vartotojas(usernameList));
+            }
+            uzklausa.close();
+        } catch (SQLException e) {
+            System.out.println("Batai. Nepavyko :)");
+            e.printStackTrace();
+        }
+        return userInfo;
+    }
 }
