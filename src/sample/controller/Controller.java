@@ -93,17 +93,18 @@ public class Controller {
 
     public void loginErrorCheck() {
         String userName = logUsernameField.getText();
+        String userEmail = logUsernameField.getText();
         String loginPass = logPasswordField.getText();
-        if (!Validation.isValidUserName(userName)) {
-            logErrorField.setText("Invalid username. Minimum 5 Uppercase, lowercase or numeric characters.");
+        if (!Validation.isValidUserName(userName) && !Validation.isValidEmail(userEmail)) {
+            logErrorField.setText("Invalid username or e-mail.");
             logErrorField.setVisible(true);
-        } else if (!VartotojasDAO.selectUsername(userName).toString().contains(userName)) {
-            logErrorField.setText("Username does not exist.");
+        } else if (!VartotojasDAO.selectUsername(userName).toString().contains(userName) && !VartotojasDAO.selectEmail(userEmail).toString().contains(userEmail)) {
+            logErrorField.setText("Username or e-mail does not exist.");
             logErrorField.setVisible(true);
         } else if (!Validation.isValidPassword(loginPass)) {
             logErrorField.setText("Invalid password. Minimum 5 Uppercase, lowercase or numeric characters.");
             logErrorField.setVisible(true);
-        } else if (!VartotojasDAO.selectUsernamePass(userName).toString().contains(loginPass)) {
+        } else if (!VartotojasDAO.selectUsernamePass(userName).toString().contains(loginPass) && !VartotojasDAO.selectEmailPass(userEmail).toString().contains(loginPass)) {
             logErrorField.setText("Wrong password");
             logErrorField.setVisible(true);
         } else {
@@ -115,15 +116,18 @@ public class Controller {
         String userName = regUsernameField.getText();
         String regPass = regPasswordField.getText();
         String regPass1 = regPasswordField1.getText();
-        String email = regEmailField.getText();
+        String userEmail = regEmailField.getText();
         if (!Validation.isValidUserName(userName)) {
             regErrorField.setText("Invalid username. Minimum 5 Uppercase, lowercase or numeric characters.");
             regErrorField.setVisible(true);
         } else if (VartotojasDAO.selectUsername(userName).toString().contains(userName)) {
             regErrorField.setText("Username already exists.");
             regErrorField.setVisible(true);
-        } else if (!Validation.isValidEmail(email)) {
-            regErrorField.setText("Invalid email. Example: mail@example.com");
+        } else if (!Validation.isValidEmail(userEmail)) {
+            regErrorField.setText("Invalid userEmail. Example: mail@example.com");
+            regErrorField.setVisible(true);
+        } else if (VartotojasDAO.selectEmail(userEmail).toString().contains(userEmail)) {
+            regErrorField.setText("This e-mail is already in use.");
             regErrorField.setVisible(true);
         } else if (!Validation.isValidPassword(regPass) && !Validation.isValidPassword(regPass1)) {
             regErrorField.setText("Invalid password. Minimum 5 Uppercase, lowercase or numeric characters.");
@@ -132,8 +136,11 @@ public class Controller {
             regErrorField.setText("Passwords don't match.");
             regErrorField.setVisible(true);
         } else {
-            Vartotojas vartotojas = new Vartotojas(userName, regPass, email);
+            Vartotojas vartotojas = new Vartotojas(userName, regPass, userEmail);
             VartotojasDAO.insert(vartotojas);
+            regErrorField.setTextFill(Color.GREENYELLOW);
+            regErrorField.setText("Signing up...");
+            regErrorField.setVisible(true);
             regErrorField.setTextFill(Color.GREEN);
             regErrorField.setText("Registration successful.");
             regErrorField.setVisible(true);
@@ -141,7 +148,7 @@ public class Controller {
             regRegisterButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
                                                      @Override
                                                      public void handle(MouseEvent mouseEvent) {
-                                                         loadDashboard();
+                                                             loadDashboard();
                                                      }
                                                  }
             );
