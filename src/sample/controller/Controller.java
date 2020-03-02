@@ -1,22 +1,25 @@
 package sample.controller;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import sample.model.Vartotojas;
 import sample.model.VartotojasDAO;
 import sample.utils.Validation;
 
 public class Controller {
+    Stage stage = new Stage();
     //login
     @FXML
     TextField logUsernameField;
@@ -50,48 +53,48 @@ public class Controller {
     Button dashSelectButton;
     @FXML
     Button dashLogoutButton;
-
-
+    @FXML
+    Label dashUsername;
     @FXML
     Button testButton;
 
-    public void loadLogin() {
+    public void loadLogin(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/loginScreen.fxml"));
-            Stage stage = new Stage();
             stage.setTitle("Login");
             stage.setScene(new Scene(root, 350, 400));
             stage.show();
+            closePreviousOnAction(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void loadRegistration() {
+    public void loadRegistration(ActionEvent actionEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/Registration.fxml"));
-            Stage stage = new Stage();
             stage.setTitle("Registration");
             stage.setScene(new Scene(root, 350, 400));
             stage.show();
+            closePreviousOnAction(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void loadDashboard() {
+    public void loadDashboard(ActionEvent actionEvent, String userName) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/Dashboard.fxml"));
-            Stage stage = new Stage();
             stage.setTitle("Dakar");
             stage.setScene(new Scene(root, 1060, 710));
             stage.show();
+            closePreviousOnAction(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void loginErrorCheck() {
+    public void loginErrorCheck(ActionEvent actionEvent) {
         String userName = logUsernameField.getText();
         String userEmail = logUsernameField.getText();
         String loginPass = logPasswordField.getText();
@@ -108,7 +111,7 @@ public class Controller {
             logErrorField.setText("Wrong password");
             logErrorField.setVisible(true);
         } else {
-            loadDashboard();
+            loadDashboard(actionEvent, userName);
         }
     }
 
@@ -124,7 +127,7 @@ public class Controller {
             regErrorField.setText("Username already exists.");
             regErrorField.setVisible(true);
         } else if (!Validation.isValidEmail(userEmail)) {
-            regErrorField.setText("Invalid userEmail. Example: mail@example.com");
+            regErrorField.setText("Invalid e-mail. Example: mail@example.com");
             regErrorField.setVisible(true);
         } else if (VartotojasDAO.selectEmail(userEmail).toString().contains(userEmail)) {
             regErrorField.setText("This e-mail is already in use.");
@@ -138,20 +141,24 @@ public class Controller {
         } else {
             Vartotojas vartotojas = new Vartotojas(userName, regPass, userEmail);
             VartotojasDAO.insert(vartotojas);
-            regErrorField.setTextFill(Color.GREENYELLOW);
-            regErrorField.setText("Signing up...");
-            regErrorField.setVisible(true);
             regErrorField.setTextFill(Color.GREEN);
             regErrorField.setText("Registration successful.");
             regErrorField.setVisible(true);
             regRegisterButton.setText("Login");
-            regRegisterButton.setOnMouseReleased(new EventHandler<MouseEvent>() {
-                                                     @Override
-                                                     public void handle(MouseEvent mouseEvent) {
-                                                             loadDashboard();
-                                                     }
-                                                 }
+            regRegisterButton.setOnAction(new EventHandler<ActionEvent>() {
+                                              public void handle(ActionEvent actionEvent) {
+                                                  loadDashboard(actionEvent, userName);
+                                              }
+                                          }
             );
         }
+    }
+
+    public void test(ActionEvent actionEvent) {
+    }
+
+    public void closePreviousOnAction(ActionEvent actionEvent) {
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.hide();
     }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="337.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
     <children>
         <GridPane layoutX="50.0" layoutY="98.0" prefHeight="203.0" prefWidth="245.0">
             <columnConstraints>
@@ -35,10 +35,10 @@
                 <Label fx:id="logErrorField" textFill="RED" visible="false" wrapText="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                 <TextField fx:id="logUsernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <PasswordField fx:id="logPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button fx:id="logLoginButton" mnemonicParsing="false" onMouseReleased="#loginErrorCheck" prefHeight="25.0" prefWidth="84.0" text="Login" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                <Button fx:id="logRegisterButton" mnemonicParsing="false" onMouseReleased="#loadRegistration" prefHeight="25.0" prefWidth="84.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                <Button fx:id="logLoginButton" mnemonicParsing="false" onAction="#loginErrorCheck" prefHeight="25.0" prefWidth="84.0" text="Log in" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                <Button fx:id="logRegisterButton" mnemonicParsing="false" onAction="#loadRegistration" prefHeight="25.0" prefWidth="84.0" text="Register" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             </children>
         </GridPane>
-      <Button fx:id="testButton" layoutX="24.0" layoutY="301.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="TEST!" />
+      <Button fx:id="testButton" layoutX="24.0" layoutY="301.0" mnemonicParsing="false" onAction="#test" prefHeight="25.0" prefWidth="84.0" text="TEST!" />
     </children>
 </Pane>

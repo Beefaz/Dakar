@@ -22,7 +22,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
     <children>
         <SplitPane dividerPositions="0.15134370579915135" orientation="VERTICAL" prefHeight="709.0" prefWidth="1059.0">
             <items>
@@ -59,7 +59,7 @@
                                                         <Font name="Javanese Text" size="14.0" />
                                                     </font>
                                                 </Label>
-                                                <Label text="username">
+                                                <Label fx:id="dashUsername" text="">
                                                     <font>
                                                         <Font name="Javanese Text" size="14.0" />
                                                     </font>
@@ -68,7 +68,7 @@
                                         </VBox>
                                         <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="83.0" HBox.hgrow="ALWAYS">
                                             <children>
-                                                <Button fx:id="dashLogoutButton" mnemonicParsing="false" onMouseReleased="#loadLogin" prefHeight="30.0" prefWidth="82.0" text="Logout" />
+                                                <Button fx:id="dashLogoutButton" mnemonicParsing="false" onAction="#loadLogin" prefHeight="30.0" prefWidth="82.0" text="Log out" />
                                             </children>
                                         </VBox>
                                     </children>
