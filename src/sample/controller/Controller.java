@@ -7,13 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import sample.model.Dakar;
+import sample.model.DakarDAO;
 import sample.model.Vartotojas;
 import sample.model.VartotojasDAO;
 import sample.utils.Validation;
@@ -50,13 +50,42 @@ public class Controller {
 
     //dashboard
     @FXML
-    Button dashSelectButton;
+    Button dashCreateButton;
     @FXML
     Button dashLogoutButton;
     @FXML
     Label dashUsername;
     @FXML
     Button testButton;
+    @FXML
+    TextField dashTeamName;
+    @FXML
+    TextField dashName;
+    @FXML
+    TextField dashSurname;
+    @FXML
+    ComboBox dashTeamMembers;
+    @FXML
+    CheckBox checkBox1;
+    @FXML
+    CheckBox checkBox2;
+    @FXML
+    CheckBox checkBox3;
+    @FXML
+    CheckBox checkBox4;
+    @FXML
+    CheckBox checkBox5;
+    @FXML
+    CheckBox checkBox6;
+    @FXML
+    RadioButton radioButton1;
+    @FXML
+    RadioButton radioButton2;
+    @FXML
+    RadioButton radioButton3;
+    @FXML
+    RadioButton radioButton4;
+
 
     public void loadLogin(ActionEvent actionEvent) {
         try {
@@ -85,7 +114,7 @@ public class Controller {
     public void loadDashboard(ActionEvent actionEvent, String userName) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../view/Dashboard.fxml"));
-            stage.setTitle("Dakar");
+            stage.setTitle("Dakaras");
             stage.setScene(new Scene(root, 1060, 710));
             stage.show();
             closePreviousOnAction(actionEvent);
@@ -153,6 +182,20 @@ public class Controller {
             );
         }
     }
+
+    /*STILL NEEDS WORK
+    public void setTeamStuff() {
+        String teamName = dashTeamName.getText();
+        String [] nameSurname = {dashName.getText(), dashSurname.getText()};
+        String [] sponsors = {checkBox1.getText(), checkBox2.getText(), checkBox3.getText(), checkBox4.getText(), checkBox5.getText(), checkBox6.getText()};
+        String [] racingCars = {radioButton1.getText(), radioButton2.getText(), radioButton3.getText(), radioButton4.getText()};
+        int members;
+        members = Integer.valueOf(dashTeamMembers.getSelectionModel().getSelectedItem().toString());
+        Dakar dakar = new Dakar(teamName, nameSurname.toString(), sponsors.toString(), racingCars.toString(), members);
+        DakarDAO.insert(dakar);
+        System.out.println("irasas sukurtas");
+    }
+    */
 
     public void test(ActionEvent actionEvent) {
     }

@@ -1,7 +1,5 @@
 package sample.model;
 
-import sample.controller.Controller;
-
 import java.sql.*;
 import java.util.ArrayList;
 

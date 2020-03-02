@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.8.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 25, 2020 at 07:04 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Mar 02, 2020 at 08:33 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,31 +25,40 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `komandos`
+--
+
+CREATE TABLE `komandos` (
+  `dakarID` int(10) NOT NULL,
+  `teamName` varchar(255) NOT NULL,
+  `nameSurname` varchar(255) NOT NULL,
+  `sponsors` varchar(255) NOT NULL,
+  `racingCars` varchar(255) NOT NULL,
+  `members` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vartotojas`
 --
 
 CREATE TABLE `vartotojas` (
-  `userId` int(11) NOT NULL,
+  `userId` int(20) NOT NULL,
   `userName` varchar(255) NOT NULL,
   `userPassword` varchar(255) NOT NULL,
   `userEmail` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `vartotojas`
---
-
-INSERT INTO `vartotojas` (`userId`, `userName`, `userPassword`, `userEmail`) VALUES
-(1, 'abcde', 'abcde', 'abcde@abcde.lt'),
-(2, 'abcde', 'abcde', 'abcde@one.lt'),
-(4, 'abcde2', 'abcde', 'abcde@abcde.lt'),
-(5, 'abcde3', 'abcde', 'abcde@abcde.lt'),
-(6, 'abcde4', 'abcde', 'abcde@abcde.lt'),
-(7, 'abcde', 'abcde', 'abcde@abcde.lt');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `komandos`
+--
+ALTER TABLE `komandos`
+  ADD PRIMARY KEY (`dakarID`);
 
 --
 -- Indexes for table `vartotojas`
@@ -62,10 +71,16 @@ ALTER TABLE `vartotojas`
 --
 
 --
+-- AUTO_INCREMENT for table `komandos`
+--
+ALTER TABLE `komandos`
+  MODIFY `dakarID` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `vartotojas`
 --
 ALTER TABLE `vartotojas`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `userId` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

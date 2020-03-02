@@ -13,14 +13,14 @@ public class Vartotojas {
         this.userEmail = userEmail;
     }
 
-    //Vartotoju registracijai
+    //registracijai
     public Vartotojas(String userName, String userPassword, String userEmail) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
     }
 
-    //vartotoju sarasui
+    //
     public Vartotojas(String userName) {
         this.userName = userName;
     }

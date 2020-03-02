@@ -12,27 +12,26 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1059.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.Controller">
     <children>
         <SplitPane dividerPositions="0.15134370579915135" orientation="VERTICAL" prefHeight="709.0" prefWidth="1059.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <GridPane alignment="TOP_CENTER" layoutX="88.0" layoutY="7.0" prefHeight="90.0" prefWidth="881.0">
+                        <GridPane alignment="TOP_CENTER" layoutX="-1.0" layoutY="7.0" prefHeight="90.0" prefWidth="1059.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="500.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="673.0" minWidth="10.0" prefWidth="673.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="191.0" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -40,39 +39,27 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
+                                    <Label text="Logged in as:" GridPane.columnIndex="2">
+                                        <font>
+                                            <Font name="Javanese Text" size="14.0" />
+                                        </font>
+                                    </Label>
                                 <Label text="DAKARAS" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="Imprint MT Shadow" size="36.0" />
                                     </font>
                                 </Label>
-                                <Label text="Dashboard" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                <Label text="Dashboard" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                                     <font>
                                         <Font name="Javanese Text" size="28.0" />
                                     </font>
                                 </Label>
-                                <HBox GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                    <children>
-                                        <VBox prefHeight="80.0" prefWidth="99.0">
-                                            <children>
-                                                <Label text="Logged in:">
-                                                    <font>
-                                                        <Font name="Javanese Text" size="14.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="dashUsername" text="">
-                                                    <font>
-                                                        <Font name="Javanese Text" size="14.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </VBox>
-                                        <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="83.0" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Button fx:id="dashLogoutButton" mnemonicParsing="false" onAction="#loadLogin" prefHeight="30.0" prefWidth="82.0" text="Log out" />
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </HBox>
+                                    <Button fx:id="dashLogoutButton" mnemonicParsing="false" onAction="#loadLogin" prefHeight="30.0" prefWidth="82.0" text="Log out" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label fx:id="dashUsername" wrapText="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                        <font>
+                                            <Font name="Javanese Text" size="14.0" />
+                                        </font>
+                                    </Label>
                             </children>
                         </GridPane>
                     </children>
@@ -85,7 +72,7 @@
                                     <children>
                                         <Pane prefHeight="595.0" prefWidth="411.0">
                                             <children>
-                                                <VBox layoutX="52.0" layoutY="36.0" prefHeight="285.0" prefWidth="308.0">
+                                                <VBox layoutX="50.0" layoutY="36.0">
                                                     <children>
                                                         <Label text="Komandos Pavadinimas">
                                                             <font>
@@ -95,46 +82,38 @@
                                                                 <Insets bottom="5.0" />
                                                             </VBox.margin>
                                                         </Label>
-                                                        <TextArea>
+                                                        <TextField fx:id="dashTeamName">
                                                             <VBox.margin>
                                                                 <Insets bottom="10.0" />
                                                             </VBox.margin>
-                                                        </TextArea>
-                                                        <Label text="Narių skaičius">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="18.0" />
-                                                            </font>
-                                                            <VBox.margin>
-                                                                <Insets bottom="5.0" />
-                                                            </VBox.margin>
-                                                        </Label>
-                                                        <ComboBox prefHeight="25.0" prefWidth="313.0">
-                                                            <items>
-                                                                <FXCollections fx:factory="observableArrayList">
-                                                                    <String fx:value="item 1" />
-                                                                    <String fx:value="item 2" />
-                                                                    <String fx:value="item 3" />
-                                                                    <String fx:value="item 4" />
-                                                                    <String fx:value="item 5" />
-                                                                </FXCollections>
-                                                            </items>
-                                                            <VBox.margin>
-                                                                <Insets bottom="10.0" />
-                                                            </VBox.margin>
-                                                        </ComboBox>
-                                                        <Label text="Mašinų numeriai">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="18.0" />
-                                                            </font>
-                                                            <VBox.margin>
-                                                                <Insets bottom="5.0" />
-                                                            </VBox.margin>
-                                                        </Label>
-                                                        <TextArea>
-                                                            <VBox.margin>
-                                                                <Insets bottom="10.0" />
-                                                            </VBox.margin>
-                                                        </TextArea>
+                                                        </TextField>
+                                          <GridPane>
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints vgrow="SOMETIMES" />
+                                                <RowConstraints vgrow="ALWAYS" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Label text="Vardas">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="Pavardė" GridPane.columnIndex="1">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="dashName" GridPane.rowIndex="1" />
+                                                <TextField fx:id="dashSurname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </GridPane>
                                                         <Label text="Sponsoriai">
                                                             <font>
                                                                 <Font name="Times New Roman" size="18.0" />
@@ -154,32 +133,32 @@
                                                                 <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             </rowConstraints>
                                                             <children>
-                                                                <CheckBox mnemonicParsing="false" text="Toyota">
+                                                                <CheckBox fx:id="checkBox1" mnemonicParsing="false" text="Toyota">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
                                                                 </CheckBox>
-                                                                <CheckBox mnemonicParsing="false" text="STIHL" GridPane.columnIndex="1">
+                                                                <CheckBox fx:id="checkBox2" mnemonicParsing="false" text="STIHL" GridPane.columnIndex="1">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
                                                                 </CheckBox>
-                                                                <CheckBox mnemonicParsing="false" text="Inbank" GridPane.columnIndex="2">
+                                                                <CheckBox fx:id="checkBox3" mnemonicParsing="false" text="Inbank" GridPane.columnIndex="2">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
                                                                 </CheckBox>
-                                                                <CheckBox mnemonicParsing="false" text="Scandagra" GridPane.rowIndex="1">
+                                                                <CheckBox fx:id="checkBox4" mnemonicParsing="false" text="Scandagra" GridPane.rowIndex="1">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
                                                                 </CheckBox>
-                                                                <CheckBox mnemonicParsing="false" text="Vikonda" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                                <CheckBox fx:id="checkBox5" mnemonicParsing="false" text="Vikonda" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
                                                                 </CheckBox>
-                                                                <CheckBox mnemonicParsing="false" text="SnapOn" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                                <CheckBox fx:id="checkBox6" mnemonicParsing="false" text="SnapOn" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                                     <GridPane.margin>
                                                                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                                                     </GridPane.margin>
@@ -208,59 +187,84 @@
                                                                 <RowConstraints minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             </rowConstraints>
                                                             <children>
-                                                                <RadioButton mnemonicParsing="false" text="Honda" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                                                                <RadioButton mnemonicParsing="false" text="Toyota" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                                                                <RadioButton mnemonicParsing="false" text="Peugeot" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
-                                                                <RadioButton mnemonicParsing="false" text="MINI" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                                <RadioButton fx:id="radioButton1" mnemonicParsing="false" text="Honda" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                                                                <RadioButton fx:id="radioButton2" mnemonicParsing="false" text="Toyota" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                                                                <RadioButton fx:id="radioButton3" mnemonicParsing="false" text="Peugeot" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                                                                <RadioButton fx:id="radioButton4" mnemonicParsing="false" text="MINI" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
                                                         </GridPane>
+                                                        <Label text="Narių skaičius">
+                                                            <font>
+                                                                <Font name="Times New Roman" size="18.0" />
+                                                            </font>
+                                                            <VBox.margin>
+                                                                <Insets bottom="5.0" />
+                                                            </VBox.margin>
+                                                        </Label>
+                                                        <ComboBox fx:id="dashTeamMembers" prefHeight="25.0" prefWidth="331.0" visibleRowCount="5">
+                                                            <items>
+                                                                <FXCollections fx:factory="observableArrayList">
+                                                                    <String fx:value="1" />
+                                                                    <String fx:value="2" />
+                                                                    <String fx:value="3" />
+                                                                    <String fx:value="4" />
+                                                                    <String fx:value="5" />
+                                                                </FXCollections>
+                                                            </items>
+                                                            <VBox.margin>
+                                                                <Insets bottom="125.0" />
+                                                            </VBox.margin>
+                                                        </ComboBox>
+                                          <GridPane prefHeight="26.0" prefWidth="329.0" VBox.vgrow="ALWAYS">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <Button fx:id="dashCreateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setTeamStuff" text="Create" GridPane.halignment="CENTER">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="14.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="dashReadButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Read" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="14.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="dashUpdateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="14.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                                <Button fx:id="dashDeleteButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                                   <font>
+                                                      <Font name="Times New Roman" size="14.0" />
+                                                   </font>
+                                                   <GridPane.margin>
+                                                      <Insets left="5.0" right="5.0" />
+                                                   </GridPane.margin>
+                                                </Button>
+                                             </children>
+                                          </GridPane>
                                                     </children>
                                                 </VBox>
-                                                <GridPane layoutX="42.0" layoutY="463.0" prefHeight="26.0" prefWidth="329.0">
-                                                    <columnConstraints>
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
-                                                    </columnConstraints>
-                                                    <rowConstraints>
-                                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                    </rowConstraints>
-                                                    <children>
-                                                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Create" GridPane.halignment="CENTER">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="14.0" />
-                                                            </font>
-                                                            <GridPane.margin>
-                                                                <Insets left="5.0" right="5.0" />
-                                                            </GridPane.margin>
-                                                        </Button>
-                                                        <Button fx:id="dashSelectButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Read" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="14.0" />
-                                                            </font>
-                                                            <GridPane.margin>
-                                                                <Insets left="5.0" right="5.0" />
-                                                            </GridPane.margin>
-                                                        </Button>
-                                                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Update" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="14.0" />
-                                                            </font>
-                                                            <GridPane.margin>
-                                                                <Insets left="5.0" right="5.0" />
-                                                            </GridPane.margin>
-                                                        </Button>
-                                                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                                                            <font>
-                                                                <Font name="Times New Roman" size="14.0" />
-                                                            </font>
-                                                            <GridPane.margin>
-                                                                <Insets left="5.0" right="5.0" />
-                                                            </GridPane.margin>
-                                                        </Button>
-                                                    </children>
-                                                </GridPane>
                                             </children>
                                         </Pane>
                                     </children>
