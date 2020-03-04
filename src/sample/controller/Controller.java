@@ -8,15 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import sample.model.Dakar;
-import sample.model.DakarDAO;
-import sample.model.Vartotojas;
-import sample.model.VartotojasDAO;
+import sample.model.*;
 import sample.utils.Validation;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class Controller {
     Stage stage = new Stage();
@@ -31,6 +32,8 @@ public class Controller {
     Button logLoginButton;
     @FXML
     Button logRegisterButton;
+    @FXML
+    Button testButton;
 
     //registration
     @FXML
@@ -56,7 +59,9 @@ public class Controller {
     @FXML
     Label dashUsername;
     @FXML
-    Button testButton;
+    Label dashErrorField;
+
+    //dashboard table entries
     @FXML
     TextField dashTeamName;
     @FXML
@@ -64,7 +69,7 @@ public class Controller {
     @FXML
     TextField dashSurname;
     @FXML
-    ComboBox dashTeamMembers;
+    ComboBox dashTeamMembersCombobox;
     @FXML
     CheckBox checkBox1;
     @FXML
@@ -183,19 +188,49 @@ public class Controller {
         }
     }
 
-    /*STILL NEEDS WORK
     public void setTeamStuff() {
+        dashTeamMembersCombobox.setValue(0); // need fix here
         String teamName = dashTeamName.getText();
-        String [] nameSurname = {dashName.getText(), dashSurname.getText()};
-        String [] sponsors = {checkBox1.getText(), checkBox2.getText(), checkBox3.getText(), checkBox4.getText(), checkBox5.getText(), checkBox6.getText()};
-        String [] racingCars = {radioButton1.getText(), radioButton2.getText(), radioButton3.getText(), radioButton4.getText()};
+        ArrayList nameSurname = new ArrayList();
+        ArrayList sponsors = new ArrayList();
+        ArrayList racingCars = new ArrayList();
         int members;
-        members = Integer.valueOf(dashTeamMembers.getSelectionModel().getSelectedItem().toString());
-        Dakar dakar = new Dakar(teamName, nameSurname.toString(), sponsors.toString(), racingCars.toString(), members);
-        DakarDAO.insert(dakar);
-        System.out.println("irasas sukurtas");
+        if (dashTeamName.getText().isEmpty()) {
+            dashErrorField.setText("Enter your team name");
+            dashErrorField.setVisible(true);
+        } else if (dashName.getText().isEmpty()) {
+            dashErrorField.setText("Enter your name.");
+            dashErrorField.setVisible(true);
+        } else if (dashSurname.getText().isEmpty()) {
+            dashErrorField.setText("Enter your surname.");
+            dashErrorField.setVisible(true);
+        } else if (dashTeamMembersCombobox.getValue().equals(0)){ //need fix here
+            dashErrorField.setText("Select number of team members.");
+            dashErrorField.setVisible(true);
+        } else {
+            nameSurname.add(dashName.getText());
+            nameSurname.add(dashSurname.getText());
+            members = Integer.valueOf(dashTeamMembersCombobox.getValue().toString()); //need fix here
+            if (radioButton1.isSelected()) {
+                racingCars.add(radioButton1.getText());
+            }
+            if (radioButton2.isSelected()) {
+                racingCars.add(radioButton2.getText());
+            }
+            if (radioButton3.isSelected()) {
+                racingCars.add(radioButton3.getText());
+            }
+            if (radioButton4.isSelected()) {
+                racingCars.add(radioButton4.getText());
+            }
+            Dakar dakar = new Dakar(teamName, nameSurname.toString(), sponsors.toString(), racingCars.toString(), members);
+            DakarDAO.insert(dakar);
+            dashErrorField.setText("Registration successful.");
+            dashErrorField.setTextFill(Color.GREEN);
+            dashErrorField.setVisible(true);
+            System.out.println("irasas sukurtas");
+        }
     }
-    */
 
     public void test(ActionEvent actionEvent) {
     }
@@ -204,4 +239,6 @@ public class Controller {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.hide();
     }
+
+
 }
