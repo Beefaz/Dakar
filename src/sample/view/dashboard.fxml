@@ -229,7 +229,7 @@
                                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Button fx:id="dashCreateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#setTeamStuff" text="Create" GridPane.halignment="CENTER">
+                                                <Button fx:id="dashCreateButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#getTeamDetails" text="Create" GridPane.halignment="CENTER">
                                                    <font>
                                                       <Font name="Times New Roman" size="14.0" />
                                                    </font>

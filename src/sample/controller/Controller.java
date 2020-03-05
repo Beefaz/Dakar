@@ -16,8 +16,9 @@ import javafx.stage.Stage;
 import sample.model.*;
 import sample.utils.Validation;
 
-import java.awt.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller {
     Stage stage = new Stage();
@@ -50,6 +51,8 @@ public class Controller {
     Button regRegisterButton;
     @FXML
     Button regBackButton;
+    @FXML
+    CheckBox regAdminRightsCheckbox;
 
     //dashboard
     @FXML
@@ -98,7 +101,7 @@ public class Controller {
             stage.setTitle("Login");
             stage.setScene(new Scene(root, 350, 400));
             stage.show();
-            closePreviousOnAction(actionEvent);
+            closePreviousWindow(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +113,7 @@ public class Controller {
             stage.setTitle("Registration");
             stage.setScene(new Scene(root, 350, 400));
             stage.show();
-            closePreviousOnAction(actionEvent);
+            closePreviousWindow(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,7 +125,7 @@ public class Controller {
             stage.setTitle("Dakaras");
             stage.setScene(new Scene(root, 1060, 710));
             stage.show();
-            closePreviousOnAction(actionEvent);
+            closePreviousWindow(actionEvent);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -154,6 +157,7 @@ public class Controller {
         String regPass = regPasswordField.getText();
         String regPass1 = regPasswordField1.getText();
         String userEmail = regEmailField.getText();
+        boolean isAdmin = regAdminRightsCheckbox.isSelected();
         if (!Validation.isValidUserName(userName)) {
             regErrorField.setText("Invalid username. Minimum 5 Uppercase, lowercase or numeric characters.");
             regErrorField.setVisible(true);
@@ -173,13 +177,23 @@ public class Controller {
             regErrorField.setText("Passwords don't match.");
             regErrorField.setVisible(true);
         } else {
-            Vartotojas vartotojas = new Vartotojas(userName, regPass, userEmail);
+            Vartotojas vartotojas = new Vartotojas(userName, regPass, userEmail, true);
             VartotojasDAO.insert(vartotojas);
+            /*
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask() {
+                @Override
+                public void run() {
+                    System.out.println("kazkas atsitiko");
+                }
+            };
+            timer.schedule(task, 1000);*/
             regErrorField.setTextFill(Color.GREEN);
             regErrorField.setText("Registration successful.");
             regErrorField.setVisible(true);
             regRegisterButton.setText("Login");
             regRegisterButton.setOnAction(new EventHandler<ActionEvent>() {
+                                              @Override
                                               public void handle(ActionEvent actionEvent) {
                                                   loadDashboard(actionEvent, userName);
                                               }
@@ -188,8 +202,7 @@ public class Controller {
         }
     }
 
-    public void setTeamStuff() {
-        dashTeamMembersCombobox.setValue(0); // need fix here
+    public void getTeamDetails() {
         String teamName = dashTeamName.getText();
         ArrayList nameSurname = new ArrayList();
         ArrayList sponsors = new ArrayList();
@@ -204,13 +217,30 @@ public class Controller {
         } else if (dashSurname.getText().isEmpty()) {
             dashErrorField.setText("Enter your surname.");
             dashErrorField.setVisible(true);
-        } else if (dashTeamMembersCombobox.getValue().equals(0)){ //need fix here
+        } else if (dashTeamMembersCombobox.getSelectionModel().isEmpty()) {
             dashErrorField.setText("Select number of team members.");
             dashErrorField.setVisible(true);
         } else {
             nameSurname.add(dashName.getText());
             nameSurname.add(dashSurname.getText());
-            members = Integer.valueOf(dashTeamMembersCombobox.getValue().toString()); //need fix here
+            if (checkBox1.isSelected()) {
+                sponsors.add(checkBox1.getText());
+            }
+            if (checkBox2.isSelected()) {
+                sponsors.add(checkBox2.getText());
+            }
+            if (checkBox3.isSelected()) {
+                sponsors.add(checkBox3.getText());
+            }
+            if (checkBox4.isSelected()) {
+                sponsors.add(checkBox4.getText());
+            }
+            if (checkBox5.isSelected()) {
+                sponsors.add(checkBox5.getText());
+            }
+            if (checkBox6.isSelected()) {
+                sponsors.add(checkBox6.getText());
+            }
             if (radioButton1.isSelected()) {
                 racingCars.add(radioButton1.getText());
             }
@@ -223,22 +253,24 @@ public class Controller {
             if (radioButton4.isSelected()) {
                 racingCars.add(radioButton4.getText());
             }
+            members = Integer.valueOf(dashTeamMembersCombobox.getValue().toString());
             Dakar dakar = new Dakar(teamName, nameSurname.toString(), sponsors.toString(), racingCars.toString(), members);
             DakarDAO.insert(dakar);
             dashErrorField.setText("Registration successful.");
             dashErrorField.setTextFill(Color.GREEN);
             dashErrorField.setVisible(true);
-            System.out.println("irasas sukurtas");
         }
     }
 
     public void test(ActionEvent actionEvent) {
     }
 
-    public void closePreviousOnAction(ActionEvent actionEvent) {
+    public void closePreviousWindow(ActionEvent actionEvent) {
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         window.hide();
     }
 
+    public void run() {
 
+    }
 }

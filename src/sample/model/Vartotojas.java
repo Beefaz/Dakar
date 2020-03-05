@@ -5,19 +5,23 @@ public class Vartotojas {
     private String userName;
     private String userPassword;
     private String userEmail;
+    private boolean adminRights;
 
-    public Vartotojas(int userId, String userName, String userPassword, String userEmail) {
+
+    public Vartotojas(int userId, String userName, String userPassword, String userEmail, boolean adminRights) {
         this.userId = userId;
         this.userName = userName;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
+        this.adminRights = adminRights;
     }
 
     //registracijai
-    public Vartotojas(String userName, String userPassword, String userEmail) {
+    public Vartotojas(String userName, String userPassword, String userEmail, boolean adminRights) {
         this.userName = userName;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
+        this.adminRights = adminRights;
     }
 
     //
@@ -56,13 +60,22 @@ public class Vartotojas {
         this.userEmail = userEmail;
     }
 
+    public boolean getAdminRights() {
+        return adminRights;
+    }
+
+    public void setAdminRights(boolean adminRights) {
+        this.adminRights = adminRights;
+    }
+
     @Override
     public String toString() {
-        return "DB_Object{" +
+        return "Vartotojas{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", adminRights=" + adminRights +
                 '}';
     }
 }

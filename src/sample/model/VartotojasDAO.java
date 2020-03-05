@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class VartotojasDAO {
     public static void insert(Vartotojas vartotojas) {
-        String query = "INSERT INTO vartotojas (userName, userPassword, userEmail) VALUES (?,?,?)";
+        String query = "INSERT INTO vartotojas (userName, userPassword, userEmail, isAdmin) VALUES (?,?,?,?)";
         String url = "jdbc:mysql://localhost:3306/dakaras?serverTimezone=UTC";
 
         try {
@@ -14,10 +14,9 @@ public class VartotojasDAO {
             uzklausa.setString(1, vartotojas.getUserName());
             uzklausa.setString(2, vartotojas.getUserPassword());
             uzklausa.setString(3, vartotojas.getUserEmail());
+            uzklausa.setBoolean(4, vartotojas.getAdminRights());
             uzklausa.executeUpdate();
             uzklausa.close();
-
-
             System.out.println("Sukurtas naujas įrašas");
         } catch (SQLException e) {
             System.out.println("Batai. Nepavyko :)");
@@ -33,7 +32,6 @@ public class VartotojasDAO {
             Connection prisijungimas = DriverManager.getConnection(url, "root", "");
             PreparedStatement uzklausa = prisijungimas.prepareStatement(query);
             ResultSet rezultatas = uzklausa.executeQuery(query);
-
             while (rezultatas.next()) {
                 String usernameList = rezultatas.getString("userName");
                 laikinasKintamasis.add(new Vartotojas(usernameList));
@@ -90,6 +88,27 @@ public class VartotojasDAO {
 
     public static ArrayList selectEmailPass(String userEmail) {
         String query = "SELECT userEmail, userPassword FROM vartotojas WHERE userEmail LIKE '" + userEmail + "'";
+        String url = "jdbc:mysql://localhost:3306/dakaras?serverTimezone=UTC";
+        ArrayList<Vartotojas> laikinasKintamasis = new ArrayList<>();
+        try {
+            Connection prisijungimas = DriverManager.getConnection(url, "root", "");
+            PreparedStatement uzklausa = prisijungimas.prepareStatement(query);
+            ResultSet rezultatas = uzklausa.executeQuery(query);
+
+            while (rezultatas.next()) {
+                String usernameList = rezultatas.getString("userEmail");
+                laikinasKintamasis.add(new Vartotojas(usernameList));
+            }
+            uzklausa.close();
+        } catch (SQLException e) {
+            System.out.println("Batai. Nepavyko :)");
+            e.printStackTrace();
+        }
+        return laikinasKintamasis;
+    }
+
+    public static ArrayList selectUserIdIsAdmin(String userId, boolean isAdmin) {
+        String query = "SELECT userId, isAdmin FROM vartotojas WHERE userId LIKE '" + userId + "'";
         String url = "jdbc:mysql://localhost:3306/dakaras?serverTimezone=UTC";
         ArrayList<Vartotojas> laikinasKintamasis = new ArrayList<>();
         try {
